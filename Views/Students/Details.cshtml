@@ -1,0 +1,82 @@
+﻿@model Enrollment
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Student.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Student.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Student.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Student.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Student.DateOfBirth)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Student.DateOfBirth)
+        </dd>
+
+        <dt class="col-sm-2">
+            Selected Courses
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                int totalCredits = 0;
+            }
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Course Number</th>
+                        <th>Course Title</th>
+                        <th>Course Credits</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var course in Model.SelectableCourses) //Why its capital
+                    {
+                        if (course.IsSelected)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(item => course.CourseNumber)</td>
+                                <td>@Html.DisplayFor(item => course.CourseTitle)</td>
+                                <td>@Html.DisplayFor(item => course.CourseCredits)</td>
+                            </tr>
+                            totalCredits += course.CourseCredits;
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </dd>
+        <dt class="col-sm-2">
+            Total Credits:
+        </dt>
+        <dd class="col-sm-10">
+            @totalCredits
+        </dd>
+
+
+
+    </dl>
+
+</div>
+<div>
+    <a asp-action="EditEnrollment" asp-route-id="@Model?.Student.Id">Edit Course Enrollment</a> |
+    <a asp-action="Edit" asp-route-id="@Model?.Student.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+

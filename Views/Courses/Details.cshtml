@@ -1,0 +1,65 @@
+﻿@model AG_MT2.Models.Course
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Course</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CourseNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Credits)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Credits)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Students)
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                int totalStudents = 0;
+            }
+            @if (Model.Students != null && Model.Students.Any())
+            {
+                @foreach (var course in Model.Students)
+                {
+                    <div>
+                        - @Html.DisplayFor(item => course.FullName)
+                    </div>
+                    totalStudents++;
+                }
+            }
+            else
+            {
+                <p>No students enrolled.</p>
+            }
+        </dd>
+        <dt class="col-sm-2">
+            Student Count
+        </dt>
+        <dd class="col-sm-10">
+            @totalStudents
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

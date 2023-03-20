@@ -1,0 +1,47 @@
+﻿@model Enrollment
+
+@{
+    ViewBag.Title = "Edit Enrollment";
+}
+
+<h2>Edit Enrollment</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.FirstName)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Student.FirstName)
+        </td>
+     </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.LastName)
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Student.LastName)
+        </td>
+     </tr>
+     <tr>
+         <td>
+             Courses Enrolled
+         </td>
+         <td>
+            <form asp-action="EditEnrollment">
+                @Html.HiddenFor(model => model.Student.Id)
+                @for (int i = 0; i < Model.SelectableCourses.Count; i++)
+                {
+                    @Html.HiddenFor(model => model.SelectableCourses[i].CourseId)
+                    @Html.EditorFor(model => model.SelectableCourses[i].IsSelected)
+                    @Html.DisplayFor(model => model.SelectableCourses[i].CourseInfo)
+                    <br/>
+                }
+                <button type="submit" class="btn btn-secondary">Save</button
+            </form>
+         </td>
+     </tr>
+</table>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
