@@ -7,7 +7,6 @@ namespace AG_MT2.Models
     {
         public int Id { get; set; }
 
-        //TO REPLACE RegExp with a string length of 5
         [Required]
         [Display(Name = "Course Number")]
         [StringLength(5, MinimumLength = 5, ErrorMessage = "Course number must be 5 digits.")]

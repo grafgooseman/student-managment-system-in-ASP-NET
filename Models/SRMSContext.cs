@@ -1,7 +1,7 @@
 ﻿using AG_MT2.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace AP_MT2.Models
+namespace AG_MT2.Models
 {
     public class SRMSContext : DbContext
     {

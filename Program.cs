@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using AP_MT2.Models;
+using AG_MT2.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,8 +12,8 @@ builder.Services.AddDbContext<SRMSContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")
 ));
 
-builder.Services.AddControllersWithViews();
-builder.Services.AddControllers().AddXmlSerializerFormatters();
+builder.Services.AddControllersWithViews().AddXmlSerializerFormatters(); ;
+//builder.Services.AddControllers().AddXmlSerializerFormatters();
 builder.Services.AddEndpointsApiExplorer();
 
 
